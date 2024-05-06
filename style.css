@@ -33,3 +33,108 @@
   font-weight: 700;
   font-style: italic;
 }
+
+body {
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+.wraper {
+  background-color: rgb(146, 230, 20);
+  height: 100vh;
+
+  position: relative;
+}
+
+.calculator {
+  position: absolute;
+  bottom: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: gray;
+  width: 50vw;
+  margin: auto;
+  height: 50vh;
+  gap: 10px;
+  display: grid;
+  grid-template-areas:
+    "d d d d"
+    "ac c per divide"
+    "seven eight nine mul"
+    "four five six minus"
+    "one two three plus"
+    "zer dt eq eq";
+}
+
+.cbtn {
+  background-color: yellow;
+  color: black;
+  height: 50px;
+}
+.d {
+  background-color: red;
+  grid-area: d;
+}
+.ac {
+  grid-area: ac;
+}
+
+.c {
+  grid-area: c;
+}
+
+.per {
+  grid-area: per;
+}
+.divide {
+  grid-area: divide;
+}
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.mul {
+  grid-area: mul;
+}
+.four {
+  grid-area: four;
+}
+.five {
+  grid-area: five;
+}
+.six {
+  grid-area: six;
+}
+.minus {
+  grid-area: minus;
+}
+.one {
+  grid-area: one;
+}
+.two {
+  grid-area: two;
+}
+.three {
+  grid-area: three;
+}
+.plus {
+  grid-area: plus;
+}
+.zero {
+  grid-area: zer;
+}
+.dot {
+  grid-area: dt;
+}
+.equal {
+  grid-area: eq;
+}
