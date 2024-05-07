@@ -73,7 +73,8 @@ zero.addEventListener("click", () => {
 });
 const dot = document.querySelector(".dot");
 dot.addEventListener("click", () => {
-  exp += ".";
+  !exp.includes(".") && (exp += ".");
+  display.innerText = exp;
   console.log(exp);
 });
 const equal = document.querySelector(".equal");
