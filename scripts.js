@@ -1,4 +1,15 @@
 var exp = "";
+const lastVal = (last) => {
+  if (
+    last === "%" ||
+    last === "/" ||
+    last === "-" ||
+    last === "*" ||
+    last === "+"
+  ) {
+    return true;
+  }
+};
 const display = document.querySelector(".display");
 const seven = document.querySelector(".seven");
 seven.addEventListener("click", () => {
@@ -67,38 +78,50 @@ dot.addEventListener("click", () => {
 });
 const equal = document.querySelector(".equal");
 equal.addEventListener("click", () => {
-  console.log("=");
+  exp = display.innerText = eval(exp);
+  console.log(exp);
 });
 const ac = document.querySelector(".ac");
 ac.addEventListener("click", () => {
-  console.log("ac");
+  exp = "";
+  display.innerHTML = exp;
 });
 const c = document.querySelector(".c");
 c.addEventListener("click", () => {
-  console.log("c");
+  exp = exp.slice(0, -1);
+  display.innerText = exp;
 });
 const per = document.querySelector(".per");
 per.addEventListener("click", () => {
-  exp += "%";
-  console.log(exp);
+  const last = exp.charAt(exp.length - 1);
+  !lastVal(last) && (exp += "%");
+  display.innerText = exp;
 });
 const divide = document.querySelector(".divide");
 divide.addEventListener("click", () => {
-  exp += "/";
+  const last = exp.charAt(exp.length - 1);
+  !lastVal(last) && (exp += "/");
+  display.innerText = exp;
   console.log(exp);
 });
 const mul = document.querySelector(".mul");
 mul.addEventListener("click", () => {
-  exp += "*";
+  const last = exp.charAt(exp.length - 1);
+  !lastVal(last) && (exp += "*");
+  display.innerText = exp;
   console.log(exp);
 });
 const minus = document.querySelector(".minus");
 minus.addEventListener("click", () => {
-  exp += "-";
+  const last = exp.charAt(exp.length - 1);
+  !lastVal(last) && (exp += "-");
+  display.innerText = exp;
   console.log(exp);
 });
 const plus = document.querySelector(".plus");
 plus.addEventListener("click", () => {
-  exp += "+";
+  const last = exp.charAt(exp.length - 1);
+  !lastVal(last) && (exp += "+");
+  display.innerText = exp;
   console.log(exp);
 });
