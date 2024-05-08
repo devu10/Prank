@@ -71,11 +71,14 @@ body {
     "four five six minus"
     "one two three plus"
     "zer dt eq eq";
+
+  transform: perspective(70rem) rotateX(30deg);
 }
 
 .calculator .cbtn {
   background: var(--tertiaryColor);
   height: 50px;
+  border-radius: 5px;
 
   display: flex;
   align-items: center;

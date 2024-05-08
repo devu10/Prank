@@ -1,3 +1,4 @@
+/*
 var exp = "";
 const lastVal = (last) => {
   if (
@@ -126,3 +127,43 @@ plus.addEventListener("click", () => {
   display.innerText = exp;
   console.log(exp);
 });
+*/
+let expression = "";
+const allButonsElm = document.querySelectorAll(".cbtn");
+const displayElm = document.querySelector(".display");
+
+const btnAction = (value) => {
+  if (value === "AC") {
+    expression = "";
+    return display(expression);
+  }
+
+  if (value === "C") {
+    expression = expression.slice(0, -1);
+    return display(expression);
+  }
+
+  if (value === "=") {
+    return calExp();
+  }
+
+  expression += value;
+  display(expression);
+};
+
+allButonsElm.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const value = btn.innerText;
+    btnAction(value);
+  });
+});
+
+const display = (str) => {
+  displayElm.innerText = str || 0.0;
+};
+
+const calExp = () => {
+  const calc = eval(expression);
+  expression = calc.toString();
+  display(expression);
+};
