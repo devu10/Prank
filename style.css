@@ -33,30 +33,36 @@
   font-weight: 700;
   font-style: italic;
 }
+:root {
+  --primaryColor: green;
+  --secondaryColor: lightgreen;
+  --tertiaryColor: yellow;
+}
 
 body {
   margin: 0;
+  font-size: 1.2rem;
 }
 * {
   box-sizing: border-box;
 }
 .wraper {
-  background-color: rgb(146, 230, 20);
-  height: 100vh;
+  background: linear-gradient(var(--tertiaryColor), var(--primaryColor));
+  min-height: 100vh;
+}
 
-  position: relative;
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .calculator {
-  position: absolute;
-  bottom: 150px;
-  left: 50%;
-  transform: translateX(-50%);
   background: gray;
-  width: 50vw;
-  margin: auto;
-  height: 50vh;
-  gap: 10px;
+  width: 400px;
+  padding: 2rem 1.5rem;
+  border-radius: 10px;
+  gap: 1rem;
   display: grid;
   grid-template-areas:
     "d d d d"
@@ -67,23 +73,30 @@ body {
     "zer dt eq eq";
 }
 
-.cbtn {
-  margin: 5px 10px;
+.calculator .cbtn {
+  background: var(--tertiaryColor);
+  height: 50px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: yellow;
-  color: black;
-  height: 50px;
+
+  box-shadow: 0 10px 5px rgba(128, 128, 128, 0.678);
+}
+
+.calculator .cbtn:hover {
+  cursor: pointer;
+  background: var(--secondaryColor);
+  transition: all 0.3s;
 }
 .d {
-  margin: 10px 10px;
-  height: 50px;
-  background-color: red;
+  background: var(--secondaryColor);
+  padding: 1rem;
+  font-size: 1.5rem;
+  text-align: end;
+  font-weight: bolder;
+  box-shadow: 0 10px 5px rgba(128, 128, 128, 0.678);
   grid-area: d;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
 }
 .ac {
   grid-area: ac;
