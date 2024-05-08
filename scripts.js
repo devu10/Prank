@@ -132,6 +132,8 @@ let expression = "";
 const allButonsElm = document.querySelectorAll(".cbtn");
 const displayElm = document.querySelector(".display");
 
+const operators = ["%", "/", "*", "-", "+"];
+
 const btnAction = (value) => {
   if (value === "AC") {
     expression = "";
@@ -144,7 +146,18 @@ const btnAction = (value) => {
   }
 
   if (value === "=") {
+    const lastCh = expression[expression.length - 1];
+    if (operators.includes(lastCh)) {
+      expression = expression.slice(0, -1);
+    }
     return calExp();
+  }
+
+  if (operators.includes(value)) {
+    const lastCh = expression[expression.length - 1];
+    if (operators.includes(lastCh)) {
+      expression = expression.slice(0, -1);
+    }
   }
 
   expression += value;
