@@ -1,11 +1,13 @@
 let expression = "";
 let lastOperator = "";
 const allButonsElm = document.querySelectorAll(".cbtn");
-const displayElm = document.querySelector(".display");
+const displayElm = document.querySelector(".d");
+const audio = new Audio("./assets/ad.mp3");
 
 const operators = ["%", "/", "*", "-", "+"];
 
 const btnAction = (value) => {
+  displayElm.classList.remove("prank");
   if (value === "AC") {
     expression = "";
     return display(expression);
@@ -65,6 +67,11 @@ const display = (str) => {
 const calExp = () => {
   const prankVal = rValue();
 
+  if (prankVal) {
+    displayElm.classList.add("prank");
+    audio.play();
+  }
+
   const calc = eval(expression) + prankVal;
   expression = calc.toString();
   display(expression);
@@ -72,5 +79,5 @@ const calExp = () => {
 
 const rValue = () => {
   const n = Math.round(Math.random() * 10);
-  return n < 3 ? n : 0;
+  return n < 9 ? n : 0;
 };
