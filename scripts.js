@@ -129,6 +129,7 @@ plus.addEventListener("click", () => {
 });
 */
 let expression = "";
+let lastOperator = "";
 const allButonsElm = document.querySelectorAll(".cbtn");
 const displayElm = document.querySelector(".display");
 
@@ -146,6 +147,7 @@ const btnAction = (value) => {
   }
 
   if (value === "=") {
+    lastOperator = "";
     const lastCh = expression[expression.length - 1];
     if (operators.includes(lastCh)) {
       expression = expression.slice(0, -1);
@@ -154,9 +156,24 @@ const btnAction = (value) => {
   }
 
   if (operators.includes(value)) {
+    lastOperator = value;
     const lastCh = expression[expression.length - 1];
     if (operators.includes(lastCh)) {
       expression = expression.slice(0, -1);
+    }
+  }
+
+  if (value === ".") {
+    const indexOfLastOperator = expression.lastIndexOf(lastOperator);
+
+    const lastNumberSet = expression.slice(indexOfLastOperator);
+
+    if (lastNumberSet.includes(".")) {
+      return;
+    }
+
+    if (!lastOperator && expression.includes(".")) {
+      return;
     }
   }
 
