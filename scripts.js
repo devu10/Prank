@@ -18,7 +18,7 @@ const btnAction = (value) => {
     return display(expression);
   }
 
-  if (value === "=") {
+  if (value === "=" || value === "Enter") {
     lastOperator = "";
     const lastCh = expression[expression.length - 1];
     if (operators.includes(lastCh)) {
@@ -85,3 +85,13 @@ const rValue = () => {
   const n = Math.round(Math.random() * 10);
   return n < 9 ? n : 0;
 };
+
+//keyress events
+
+document.addEventListener("keypress", (e) => {
+  const keyPress = e.key;
+  if (e.code.includes("Key")) {
+    return;
+  }
+  btnAction(keyPress);
+});
