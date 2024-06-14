@@ -1,12 +1,17 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 export const Calculator = () => {
+const[display, setDisplay] = useState("");
+    const handleOnClick = (e)=> {
+
+setDisplay(e.target.innerText);
+    }
   return (
     <div className='bg-warning p-2'>
         <div className="container text-center ">
-        <div className='row bg-dark-subtle mb-1'>display</div>
+        <div className='row bg-dark-subtle mb-1'>{display}</div>
     <div className="row gap-2 mb-1">
-      <div className="col bg-warning-subtle ">
+      <div className="col bg-warning-subtle " onClick={handleOnClick}>
         AC
       </div>
       <div className="col bg-warning-subtle ">
