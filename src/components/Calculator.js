@@ -1,9 +1,79 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+const audio = new Audio("./assets/ad.mp3");
 
 export const Calculator = () => {
-  const [display, setDisplay] = useState("");
+  let [expression, setExpression] = useState("");
+  let lastOperator = "";
+  const operators = ["%", "/", "*", "-", "+"];
+
   const handleOnClick = (e) => {
-    setDisplay(e);
+    btnAction(e);
+  };
+
+  const btnAction = (value) => {
+    //displayElm.classList.remove("prank");
+    if (value === "AC") {
+      expression = "";
+      return setExpression(expression);
+    }
+
+    if (value === "C") {
+      expression = expression.slice(0, -1);
+      return setExpression(expression);
+    }
+
+    if (value === "=" || value === "Enter") {
+      lastOperator = "";
+      const lastCh = expression[expression.length - 1];
+      if (operators.includes(lastCh)) {
+        expression = expression.slice(0, -1);
+      }
+      return calExp();
+    }
+
+    if (operators.includes(value)) {
+      lastOperator = value;
+      const lastCh = expression[expression.length - 1];
+      if (operators.includes(lastCh)) {
+        expression = expression.slice(0, -1);
+      }
+    }
+
+    if (value === ".") {
+      const indexOfLastOperator = expression.lastIndexOf(lastOperator);
+
+      const lastNumberSet = expression.slice(indexOfLastOperator);
+
+      if (lastNumberSet.includes(".")) {
+        return;
+      }
+
+      if (!lastOperator && expression.includes(".")) {
+        return;
+      }
+    }
+
+    expression += value;
+    setExpression(expression);
+  };
+
+  const calExp = () => {
+    const prankVal = rValue();
+    /*
+    if (prankVal) {
+      displayElm.classList.add("prank");
+      audio.play();
+    }
+
+    const calc = eval(expression) + prankVal;*/
+    const calc = eval(expression);
+    expression = calc.toString();
+    setExpression(expression);
+  };
+
+  const rValue = () => {
+    const n = Math.round(Math.random() * 10);
+    return n < 9 ? n : 0;
   };
 
   const buttons = [
@@ -31,7 +101,7 @@ export const Calculator = () => {
     <div className="bg-warning p-2">
       <div className="container ">
         <div className="row bg-dark-subtle mb-1 text-end">
-          <div className="col">{display}</div>
+          <div className="col">{expression}</div>
         </div>
         <div className="row text-center">
           {buttons.map((value, index) => (
