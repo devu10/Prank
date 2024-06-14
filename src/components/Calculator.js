@@ -1,80 +1,52 @@
-import React from 'react'
+import React, { useState } from "react";
 
 export const Calculator = () => {
+  const [display, setDisplay] = useState("");
+  const handleOnClick = (e) => {
+    setDisplay(e);
+  };
+
+  const buttons = [
+    "AC",
+    "C",
+    "%",
+    "/",
+    "7",
+    "8",
+    "9",
+    "*",
+    "4",
+    "5",
+    "6",
+    "-",
+    "1",
+    "2",
+    "3",
+    "+",
+    "0",
+    ".",
+    "=",
+  ];
   return (
-    <div className='bg-warning p-2'>
-        <div className="container text-center ">
-        <div className='row bg-dark-subtle mb-1'>display</div>
-    <div className="row gap-2 mb-1">
-      <div className="col bg-warning-subtle ">
-        AC
-      </div>
-      <div className="col bg-warning-subtle ">
-        C
-      </div>
-      <div className="col bg-warning-subtle ">
-        %
-      </div>
-      <div className="col bg-warning-subtle ">
-        /
-      </div>
-    </div>
-    <div className="row gap-2 mb-1">
-      <div className="col bg-warning-subtle ">
-        7
-      </div>
-      <div className="col bg-warning-subtle ">
-        8
-      </div>
-      <div className="col bg-warning-subtle ">
-        9
-      </div>
-      <div className="col bg-warning-subtle ">
-        *
+    <div className="bg-warning p-2">
+      <div className="container ">
+        <div className="row bg-dark-subtle mb-1 text-end">
+          <div className="col">{display}</div>
+        </div>
+        <div className="row text-center">
+          {buttons.map((value, index) => (
+            <div key={index} className="col-3 p-1">
+              <button
+                style={{ width: "100%", height: "60px" }}
+                className="btn-calc bg-warning-subtle rounded btn"
+                onClick={() => handleOnClick(value)}
+              >
+                {value}
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-    <div className="row gap-2 mb-1">
-      <div className="col bg-warning-subtle ">
-        4
-      </div>
-      <div className="col bg-warning-subtle ">
-        5
-      </div>
-      <div className="col bg-warning-subtle ">
-        6
-      </div>
-      <div className="col bg-warning-subtle ">
-        -
-      </div>
-    </div>
-    <div className="row gap-2 mb-1">
-      <div className="col bg-warning-subtle ">
-        1
-      </div>
-      <div className="col bg-warning-subtle ">
-        2
-      </div>
-      <div className="col bg-warning-subtle ">
-        3
-      </div>
-      <div className="col bg-warning-subtle ">
-        +
-      </div>
-    </div>
-    <div className="row gap-2 mb-1">
-      <div className="col bg-warning-subtle ">
-        0
-      </div>
-      <div className="col bg-warning-subtle ">
-        .
-      </div>
-      <div className="col bg-warning-subtle ">
-        =
-      </div>
-    </div>
-    
-  </div>
-    </div>
-    
-  )
-}
+  );
+};
