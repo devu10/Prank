@@ -1,0 +1,5 @@
+.prank {
+  background: red;
+  color: white;
+  animation: shake 0.5s;
+}
